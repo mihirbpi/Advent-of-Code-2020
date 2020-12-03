@@ -12,7 +12,6 @@ for i in range (0, len(list)):
     pos2 = int(numbers.split("-")[1]) - 1
 
     if( (string[pos1] == letter) ^ (string[pos2] == letter) ):
-        print(pos1, pos2, letter, string)
         valid_strings += 1
 
 print(valid_strings)
