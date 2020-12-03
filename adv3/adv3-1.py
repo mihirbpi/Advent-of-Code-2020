@@ -1,0 +1,20 @@
+file = open("adv3-1_input.txt")
+map = file.readlines()
+height = len(map)
+width = len(map[0]) - 1
+
+for i in range(0, height):
+    map[i] = map[i][0:width]
+
+x_pos = 0
+symbol = ""
+trees = 0
+
+for i in range(0, height - 1):
+    x_pos = (x_pos + 3) % width
+    symbol = map[i + 1][x_pos]
+
+    if(symbol == "#"):
+        trees += 1
+
+print(trees)
