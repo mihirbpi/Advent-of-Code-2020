@@ -1,8 +1,9 @@
-file = open("adv1-2_input.txt", "r")
-list = file.readlines()
+from aocd import get_data
+
+list = get_data(day=1).split("\n")
 
 for i in range (0,len(list)):
-    list[i] = int(list[i][0:len(list[i]) - 1])
+    list[i] = int(list[i][0:len(list[i])])
 
 for i in range(0, len(list)):
     element1 = list[i]

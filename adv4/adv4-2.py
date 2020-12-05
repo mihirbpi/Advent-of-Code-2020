@@ -1,6 +1,6 @@
-file = open("adv4-2_input.txt")
-my_list = file.read()
-my_list = my_list.split("\n\n")
+from aocd import get_data
+
+my_list = get_data(day=4).split("\n\n")
 
 for i in range (0, len(my_list)):
     my_list[i] = my_list[i].replace("\n", " ").strip()

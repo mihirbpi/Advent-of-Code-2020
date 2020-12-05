@@ -1,7 +1,8 @@
-file = open("adv3-2_input.txt")
-map = file.readlines()
+from aocd import get_data
+
+map = get_data(day=3).split("\n")
 height = len(map)
-width = len(map[0]) - 1
+width = len(map[0])
 
 for i in range(0, height):
     map[i] = map[i][0:width]

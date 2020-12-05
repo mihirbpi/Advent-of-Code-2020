@@ -1,10 +1,10 @@
-file = open("adv2-2_input.txt")
-list = file.readlines()
+from aocd import get_data
 
+list = get_data(day=2).split("\n")
 valid_strings = 0
 
 for i in range (0, len(list)):
-    list[i] = list[i][0:len(list[i])-1]
+    list[i] = list[i][0:len(list[i])]
     numbers = list[i].split(" ")[0]
     letter = list[i].split(" ")[1].split(":")[0]
     string = list[i].split(" ")[2]
