@@ -12,28 +12,13 @@ def bin_to_dec(string):
     return result
 
 def seat_ID(string):
-    row_string = ""
-    column_string = ""
-
-    for i in range(0, len(string)):
-
-        if(string[i] == "F"):
-            row_string += "0"
-
-        elif(string[i] == "B"):
-            row_string += "1"
-
-        elif(string[i] == "L"):
-            column_string += "0"
-
-        elif(string[i] == "R"):
-            column_string += "1"
-
+    row_string = string[0:7].replace("F", "0").replace("B", "1")
+    column_string = string[7:10].replace("L", "0").replace("R", "1")
     row = bin_to_dec(row_string)
     column = bin_to_dec(column_string)
     return row * 8 + column
 
-
+    
 flight_seat_IDs = []
 
 for i in range(0, len(my_list)):
