@@ -40,7 +40,6 @@ for i in range(0, len(my_list)):
     sID = seat_ID(my_list[i])
     flight_seat_IDs.append(sID)
 
-flight_seat_IDs.sort()
 all_seat_IDs = range(min(flight_seat_IDs), max(flight_seat_IDs) + 1)
 missing_ID = 0
 
