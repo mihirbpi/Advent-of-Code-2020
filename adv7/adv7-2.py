@@ -6,30 +6,32 @@ bag_dict = {}
 for i in range(0, len(my_list)):
     string = my_list[i]
     parent_bag = string.split("contain")[0].strip()[:-1]
-    rest = string.split("contain")[1].strip().split(", ")
+    inner_bags_info = string.split("contain")[1].strip().split(", ")
 
-    if(rest[0] == "no other bags"):
-        rest = []
+    if(inner_bags_info[0] == "no other bags"):
+        inner_bags_info = []
 
-    for j in range(0, len(rest)):
-        rest[j] = rest[j].strip("s")
+    for j in range(0, len(inner_bags)):
+        inner_bags_info[j] = inner_bags[j].strip("s")
 
-        if(rest[j].split(" ")[0].isnumeric()):
-            rest[j] = (int(rest[j].split(" ")[0]), rest[j][2:])
+        if(inner_bags_info[j].split(" ")[0].isnumeric()):
+            inner_bags_info[j] = (int(inner_bags_info[j].split(" ")[0]), inner_bags_info[j][2:])
 
-    bag_dict[parent_bag] = rest
+    bag_dict[parent_bag] = inner_bags_info
 
 
-def num_bags_inside(bag_name):
+def num_bags_inside(bag):
     num_bags = 0
 
-    if(bag_name in bag_dict.keys()):
+    if(bag in bag_dict.keys()):
 
-        if(bag_dict[bag_name] == []):
+        if(bag_dict[bag] == []):
             return 0
 
-        for bag_tuple in bag_dict[bag_name]:
-            num_bags += bag_tuple[0] + bag_tuple[0] * num_bags_inside(bag_tuple[1])
+        for inner_bag_info in bag_dict[bag_name]:
+            inner_bag = inner_bag_info[1]
+            num_inner_bag = inner_bag_info[0]
+            num_bags += num_inner_bag * (1 + num_bags_inside(inner_bag))
 
     return num_bags
 

@@ -6,30 +6,30 @@ bag_dict = {}
 for i in range(0, len(my_list)):
     string = my_list[i]
     parent_bag = string.split("contain")[0].strip()[:-1]
-    rest = string.split("contain")[1].strip().split(", ")
+    inner_bags = string.split("contain")[1].strip().split(", ")
 
-    if(rest[0] == "no other bags"):
-        rest = []
+    if(inner_bags[0] == "no other bags"):
+        inner_bags = []
 
-    for j in range(0, len(rest)):
-        rest[j] = rest[j].strip("s")
+    for j in range(0, len(inner_bags)):
+        inner_bags[j] = inner_bags[j].strip("s")
 
-        if(rest[j].split(" ")[0].isnumeric()):
-            rest[j] = rest[j][2:]
+        if(inner_bags[j].split(" ")[0].isnumeric()):
+            inner_bags[j] = inner_bags[j][2:]
 
-    bag_dict[parent_bag] = rest
+    bag_dict[parent_bag] = inner_bags
 
 
+def contains_gold(bag):
 
-def contains_gold(bag_name):
+    if(bag in bag_dict.keys()):
 
-    if(bag_name in bag_dict.keys()):
-
-        if("shiny gold bag" in bag_dict[bag_name]):
+        if("shiny gold bag" in bag_dict[bag]):
             return True
 
-        for bag in bag_dict[bag_name]:
-            if(contains_gold(bag) ==  True):
+        for inner_bag in bag_dict[bag]:
+
+            if(contains_gold(inner_bag) ==  True):
                 return True
         return False
 
