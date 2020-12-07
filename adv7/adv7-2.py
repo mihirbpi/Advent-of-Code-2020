@@ -11,8 +11,8 @@ for i in range(0, len(my_list)):
     if(inner_bags_info[0] == "no other bags"):
         inner_bags_info = []
 
-    for j in range(0, len(inner_bags)):
-        inner_bags_info[j] = inner_bags[j].strip("s")
+    for j in range(0, len(inner_bags_info)):
+        inner_bags_info[j] = inner_bags_info[j].strip("s")
 
         if(inner_bags_info[j].split(" ")[0].isnumeric()):
             inner_bags_info[j] = (int(inner_bags_info[j].split(" ")[0]), inner_bags_info[j][2:])
@@ -28,7 +28,7 @@ def num_bags_inside(bag):
         if(bag_dict[bag] == []):
             return 0
 
-        for inner_bag_info in bag_dict[bag_name]:
+        for inner_bag_info in bag_dict[bag]:
             inner_bag = inner_bag_info[1]
             num_inner_bag = inner_bag_info[0]
             num_bags += num_inner_bag * (1 + num_bags_inside(inner_bag))
