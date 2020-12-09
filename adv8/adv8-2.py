@@ -5,21 +5,22 @@ instructions = get_data(day=8).split("\n")[:-1]
 def does_terminate(instructs):
     index = 0
     acc = 0
-    current_instruction = (0, instructs[0])
-    past_instructions = []
+    current_instruct = (0, instructs[0])
+    past_instructs = []
 
-    while(current_instruction not in past_instructions):
-        instruction_array = current_instruction[1].split(" ")
+    while(current_instruct not in past_instructs):
+        instruct_array = current_instruct[1].split(" ")
 
-        if(instruction_array[0] == "nop"):
+        if(instruct_array[0] == "nop"):
             index += 1
-            past_instructions.append(current_instruction)
+            past_instructs.append(current_instruct)
+
             if(index  >= len(instructs)):
                 return (acc, True)
-            current_instruction = (index, instructs[index])
+            current_instruct = (index, instructs[index])
 
-        elif(instruction_array[0] == "acc"):
-            increment = instruction_array[1]
+        elif(instruct_array[0] == "acc"):
+            increment = instruct_array[1]
             inc = 0
 
             if(increment[0] == "-"):
@@ -30,14 +31,14 @@ def does_terminate(instructs):
 
             acc += inc
             index += 1
-            past_instructions.append(current_instruction)
+            past_instructs.append(current_instruct)
 
             if(index  >= len(instructs)):
                 return (acc, True)
-            current_instruction = (index, instructs[index])
+            current_instruct = (index, instructs[index])
 
-        elif(instruction_array[0] == "jmp"):
-            increment = instruction_array[1]
+        elif(instruct_array[0] == "jmp"):
+            increment = instruct_array[1]
             inc = 0
 
             if(increment[0] == "-"):
@@ -47,11 +48,11 @@ def does_terminate(instructs):
                 inc = int(increment.strip("+"))
 
             index += inc
-            past_instructions.append(current_instruction)
+            past_instructs.append(current_instruct)
 
             if(index  >= len(instructs)):
                 return (acc, True)
-            current_instruction = (index, instructs[index])
+            current_instruct = (index, instructs[index])
 
     return (acc, False)
 
