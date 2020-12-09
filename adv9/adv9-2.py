@@ -29,16 +29,14 @@ def find_continuous_range(number):
 
     for i in range(0, len(my_list)):
         continuous_range = []
-        index = i
         sum = 0
 
-        while(index < len(my_list)):
-            sum += my_list[index]
-            continuous_range.append(my_list[index])
+        for j in range(i, len(my_list)):
+            sum += my_list[j]
+            continuous_range.append(my_list[j])
 
             if(sum == number):
                 return min(continuous_range) + max(continuous_range)
-            index += 1
 
 first_invalid = first_not_valid(25)
 
