@@ -31,7 +31,7 @@ def neighbors(x, y, board):
 
     return neighbors_list
 
-def num_occupied(x, y, board):
+def num_neighbors_occupied(x, y, board):
     occupied = 0
 
     for neighbor in neighbors(x, y, board):
@@ -41,13 +41,24 @@ def num_occupied(x, y, board):
 
     return occupied
 
+def num_occupied_total(board):
+    count = 0
+
+    for i in range (0, len(board)):
+
+        for j in range(0, len(board[0])):
+
+            if(board[i][j] == "#"):
+                count += 1
+
+    return count
 
 def new_character(x, y, board):
 
-    if(is_empty(x, y, board) and num_occupied(x, y, board) == 0):
+    if(is_empty(x, y, board) and num_neighbors_occupied(x, y, board) == 0):
         return "#"
 
-    elif(is_occupied(x, y, board) and num_occupied(x, y, board) >= 4):
+    elif(is_occupied(x, y, board) and num_neighbors_occupied(x, y, board) >= 4):
         return "L"
 
     else:
@@ -68,18 +79,6 @@ def is_unchanged(board):
     if(update_board(board) != board):
                 return False
     return True
-
-def num_occupied_total(board):
-    count = 0
-
-    for i in range (0, len(board)):
-
-        for j in range(0, len(board[0])):
-
-            if(board[i][j] == "#"):
-                count += 1
-
-    return count
 
 while(not is_unchanged(board)):
     board = update_board(board)

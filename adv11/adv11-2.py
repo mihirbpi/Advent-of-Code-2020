@@ -20,7 +20,7 @@ def is_empty(x, y, board):
 def valid_pos(x, y, board):
     return (x >= 0 and x <= len(board[0]) - 1) and (y >= 0 and y <= len(board) - 1)
 
-def num_occupied(x, y, board):
+def num_seen_occupied(x, y, board):
     occupied = 0
     x_pos = x
     y_pos = y
@@ -101,12 +101,24 @@ def num_occupied(x, y, board):
     return occupied
 
 
+def num_occupied_total(board):
+    count = 0
+
+    for i in range (0, len(board)):
+
+        for j in range(0, len(board[0])):
+
+            if(board[i][j] == "#"):
+                count += 1
+
+    return count
+
 def new_character(x, y, board):
 
-    if(is_empty(x, y, board) and num_occupied(x, y, board) == 0):
+    if(is_empty(x, y, board) and num_seen_occupied(x, y, board) == 0):
         return "#"
 
-    elif(is_occupied(x, y, board) and num_occupied(x, y, board) >= 5):
+    elif(is_occupied(x, y, board) and num_seen_occupied(x, y, board) >= 5):
         return "L"
 
     else:
@@ -127,18 +139,6 @@ def is_unchanged(board):
     if(update_board(board) != board):
                 return False
     return True
-
-def num_occupied_total(board):
-    count = 0
-
-    for i in range (0, len(board)):
-
-        for j in range(0, len(board[0])):
-
-            if(board[i][j] == "#"):
-                count += 1
-
-    return count
 
 
 while(not is_unchanged(board)):
