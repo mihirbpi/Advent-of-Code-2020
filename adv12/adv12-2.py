@@ -7,16 +7,21 @@ waypoint_x = 10
 waypoint_y = 1
 
 def my_cos(theta):
+
     if(abs(theta) == 90 or abs(theta) == 270):
         return 0
+
     if(abs(theta) == 180):
         return -1
 
 def my_sin(theta):
+
     if(abs(theta) == 180):
         return 0
+
     if(theta == 90 or theta == -270):
         return 1
+
     if(theta == -90 or theta == 270):
         return -1
 
