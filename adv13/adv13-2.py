@@ -37,7 +37,7 @@ products_list = []
 
 for i in range(0, len(bus_IDs)):
     n_i = bus_IDs[i]
-    a_i =  -1 * my_list[1].split(",").index(str(n_i)) % n_i
+    a_i =  -1 * my_list[1].split(",").index(str(n_i))
     y_i = int(N / n_i)
     z_i = modInverse(y_i, n_i)
     products_list.append(a_i * y_i * z_i)
