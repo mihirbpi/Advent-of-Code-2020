@@ -42,5 +42,4 @@ for i in range(0, len(bus_IDs)):
     z_i = modInverse(y_i, n_i)
     products_list.append(a_i * y_i * z_i)
 
-
 print(sum(products_list) % N)
