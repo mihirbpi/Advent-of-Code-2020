@@ -15,11 +15,13 @@ def bin_to_dec(bin_string):
     return int(bin_string, 2)
 
 def write_value(bin_address_floating, value):
+
     if(bin_address_floating.count("X") == 1):
         address0 = bin_to_dec(bin_address_floating.replace("X", "0"))
         address1 = bin_to_dec(bin_address_floating.replace("X", "1"))
         mem[address0] = value
         mem[address1] = value
+
     else:
         bin_address_floating0 = bin_address_floating.replace("X", "0", 1)
         bin_address_floating1 = bin_address_floating.replace("X", "1", 1)
