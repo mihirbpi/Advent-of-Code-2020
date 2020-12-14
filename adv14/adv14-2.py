@@ -42,7 +42,7 @@ for i in range(0, len(program)):
             mask_char = mask[i]
             address_char = bin_address[i]
 
-            if( (mask_char == "1" or mask_char == "X") and mask_char != address_char):
+            if((mask_char == "1" or mask_char == "X") and mask_char != address_char):
                 bin_address_floating = replacer(bin_address_floating, mask_char, i)
 
         write_value(bin_address_floating, new_value)
