@@ -2,7 +2,7 @@ from aocd import get_data
 
 my_list = get_data(day=16).split("\n\n")
 fields = my_list[0].split("\n")
-nearby_tickets = my_list[2].split("\n")[:-1]
+nearby_tickets = my_list[2].split("\n")
 fields_list = []
 nearby_tickets_list = []
 
@@ -28,7 +28,7 @@ def invalid_values(ticket):
         for j in range(0, len(fields_list)):
             field = fields_list[j]
 
-            if ((field_value >= field[0] and field_value <= field[1]) or (field_value >= field[2] and field_value <= field[3])):
+            if((field_value >= field[0] and field_value <= field[1]) or (field_value >= field[2] and field_value <= field[3])):
                 valid_count += 1
 
         if(valid_count == 0):
