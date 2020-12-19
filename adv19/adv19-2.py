@@ -51,16 +51,17 @@ def valid_strings_set(rule_number):
 valid42strings = valid_strings_set("42")
 valid31strings = valid_strings_set("31")
 
-def follows0(string):
+def follows8(string):
+
+    if(string in valid42strings):
+        return True
 
     for i in range(0, len(string) + 1):
         substring = string[0:i]
 
-        if(follows8(substring)):
-            check = string.replace(substring, "", 1)
-
-            if(follows11(check)):
-                return True
+        if(substring in valid42strings):
+            string = string.replace(substring, "", 1)
+            return follows8(string)
 
     return False
 
@@ -84,17 +85,16 @@ def follows11(string):
 
     return False
 
-def follows8(string):
-
-    if(string in valid42strings):
-        return True
+def follows0(string):
 
     for i in range(0, len(string) + 1):
         substring = string[0:i]
 
-        if(substring in valid42strings):
-            string = string.replace(substring, "", 1)
-            return follows8(string)
+        if(follows8(substring)):
+            check = string.replace(substring, "", 1)
+
+            if(follows11(check)):
+                return True
 
     return False
 
