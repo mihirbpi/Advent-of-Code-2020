@@ -18,17 +18,10 @@ for i in range(0, len(my_list)):
     for allergen in allergens:
 
         if(allergen not in allergens_dict.keys()):
-            allergens_dict[allergen] = ingredients
+            allergens_dict[allergen] = set(ingredients)
 
         else:
-            ingredients_list_check = allergens_dict[allergen].copy()
-
-            for ingredient in allergens_dict[allergen].copy():
-
-                if(ingredient not in ingredients):
-                    ingredients_list_check.remove(ingredient)
-
-            allergens_dict[allergen] = ingredients_list_check
+            allergens_dict[allergen] = set.intersection(allergens_dict[allergen], ingredients)
 
 allergens_dict_copy = allergens_dict.copy()
 
@@ -37,8 +30,8 @@ while(len(allergens_dict_copy.keys()) > 0):
     for allergen in allergens_dict.keys():
 
         if(len(allergens_dict[allergen]) == 1):
-            allergens_toingredient_dict[allergen] = allergens_dict[allergen][0]
-            ingredient_to_remove = allergens_dict[allergen][0]
+            allergens_toingredient_dict[allergen] = list(allergens_dict[allergen])[0]
+            ingredient_to_remove = list(allergens_dict[allergen])[0]
 
             allergens_dict_copy.pop(allergen, None)
 
@@ -50,7 +43,7 @@ while(len(allergens_dict_copy.keys()) > 0):
                     allergens_dict[other_allergen] = x
 
 for allergen in allergens_dict.keys():
-    allergens_dict[allergen] = allergens_dict[allergen][0]
+    allergens_dict[allergen] = list(allergens_dict[allergen])[0]
 
 allergens_list = list(allergens_dict.keys())
 allergens_list.sort()
