@@ -174,11 +174,11 @@ def num_match_left(tile, tile_id):
 
     return count
 
-s = set()
+corner_ids = set()
 
 for tup in all_tiles_list:
 
     if(num_match_top(*tup) == 0 and num_match_right(*tup) == 1 and num_match_left(*tup) == 0 and num_match_bottom(*tup) == 1):
-        s.add(tup[1])
+        corner_ids.add(tup[1])
 
-print(math.prod(s))
+print(math.prod(corner_ids))
