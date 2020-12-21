@@ -1,11 +1,9 @@
 import copy
 import itertools
 import math
+from aocd import get_data
 
-file = open("input.txt", "r")
-
-my_list = file.read().split("\n\n")
-
+my_list = get_data(day=20).split("\n\n")
 tiles_dict = {}
 
 for i in range(0, len(my_list)):
@@ -15,11 +13,6 @@ for i in range(0, len(my_list)):
     rows.pop(0)
     tile = rows
     tiles_dict[id] = tile
-
-def printtile(tile):
-
-    for i in range(0, len(tile)):
-        print(tile[i] + "\n")
 
 def column(tile, i):
     col = ""
@@ -41,24 +34,11 @@ def rotate90(tile):
 
     return result
 
-
 def rotate180(tile):
     return rotate90(rotate90(tile))
 
 def rotate270(tile):
     return rotate90(rotate90(rotate90(tile)))
-
-def flip_horiz(tile):
-    tile_copy =  copy.deepcopy(tile)
-    result = [""]*len(tile_copy)
-
-    for i in range(0, len(tile_copy[0])):
-        toreplace = column(tile_copy, i)
-
-        for j in range(0, len(tile_copy)):
-            result[j] += toreplace[j]
-
-    return result
 
 def flip_vert(tile):
     tile_copy =  copy.deepcopy(tile)
@@ -69,6 +49,15 @@ def flip_vert(tile):
 
     return result
 
+def flipv_r90(tile):
+    return rotate90(flip_vert(tile))
+
+def flipv_r180(tile):
+    return rotate180(flip_vert(tile))
+
+def flipv_r270(tile):
+    return rotate270(flip_vert(tile))
+
 all_tiles_list = []
 
 for id in tiles_dict.keys():
@@ -78,7 +67,9 @@ for id in tiles_dict.keys():
     all_tiles_list.append((rotate180(tile), id))
     all_tiles_list.append((rotate270(tile), id))
     all_tiles_list.append((flip_vert(tile), id))
-    all_tiles_list.append((flip_horiz(tile), id))
+    all_tiles_list.append((flipv_r90(tile), id))
+    all_tiles_list.append((flipv_r180(tile), id))
+    all_tiles_list.append((flipv_r270(tile), id))
 
 
 def num_match_top(tile, tile_id):
@@ -95,7 +86,9 @@ def num_match_top(tile, tile_id):
         rotations.append(rotate180(tile_check))
         rotations.append(rotate270(tile_check))
         rotations.append(flip_vert(tile_check))
-        rotations.append(flip_horiz(tile_check))
+        rotations.append(flipv_r90(tile_check))
+        rotations.append(flipv_r180(tile_check))
+        rotations.append(flipv_r270(tile_check))
 
         for t_c in rotations:
 
@@ -119,7 +112,9 @@ def num_match_bottom(tile, tile_id):
         rotations.append(rotate180(tile_check))
         rotations.append(rotate270(tile_check))
         rotations.append(flip_vert(tile_check))
-        rotations.append(flip_horiz(tile_check))
+        rotations.append(flipv_r90(tile_check))
+        rotations.append(flipv_r180(tile_check))
+        rotations.append(flipv_r270(tile_check))
 
         for t_c in rotations:
 
@@ -142,7 +137,9 @@ def num_match_right(tile, tile_id):
         rotations.append(rotate180(tile_check))
         rotations.append(rotate270(tile_check))
         rotations.append(flip_vert(tile_check))
-        rotations.append(flip_horiz(tile_check))
+        rotations.append(flipv_r90(tile_check))
+        rotations.append(flipv_r180(tile_check))
+        rotations.append(flipv_r270(tile_check))
 
         for t_c in rotations:
 
@@ -166,7 +163,9 @@ def num_match_left(tile, tile_id):
         rotations.append(rotate180(tile_check))
         rotations.append(rotate270(tile_check))
         rotations.append(flip_vert(tile_check))
-        rotations.append(flip_horiz(tile_check))
+        rotations.append(flipv_r90(tile_check))
+        rotations.append(flipv_r180(tile_check))
+        rotations.append(flipv_r270(tile_check))
 
         for t_c in rotations:
 
