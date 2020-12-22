@@ -338,7 +338,6 @@ for i in range(0, len(grid)):
         elif(does_match(flipv_r270_edge_list(edge_list), top_id, right_id, bottom_id, left_id)):
             tiles_dict[id] = flipv_r270(tiles_dict[id])
 
-
 image = [[None] for i in range(0, 8 * size)]
 
 for i in range(0, 8 * size):
