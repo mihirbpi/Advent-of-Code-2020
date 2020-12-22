@@ -4,6 +4,8 @@ import math
 from aocd import get_data
 
 my_list = get_data(day=20).split("\n\n")
+size = math.isqrt(len(my_list))
+
 tiles_dict = {}
 
 for i in range(0, len(my_list)):
@@ -22,163 +24,66 @@ def column(tile, i):
 
     return col
 
-def identity(tile):
-    return copy.deepcopy(tile)
+def num_neighbors(id):
+    edge_matching_ids = tiles_to_edge_matching_ids_dict[id]
+    count = 0
 
-def rotate90(tile):
-    result = []
-    tile_copy =  copy.deepcopy(tile)
+    for i in range(0, len(edge_matching_ids)):
 
-    for i in range(0, len(tile_copy[0])):
-        result.append(column(tile_copy, i))
+        if(len(edge_matching_ids[i]) > 0):
+            count += 1
 
-    return result
+    return count
 
-def rotate180(tile):
-    return rotate90(rotate90(tile))
 
-def rotate270(tile):
-    return rotate90(rotate90(rotate90(tile)))
-
-def flip_vert(tile):
-    tile_copy =  copy.deepcopy(tile)
-    result = []
-
-    for i in range(0, len(tile_copy)):
-        result.append(tile_copy[i][::-1])
-
-    return result
-
-def flipv_r90(tile):
-    return rotate90(flip_vert(tile))
-
-def flipv_r180(tile):
-    return rotate180(flip_vert(tile))
-
-def flipv_r270(tile):
-    return rotate270(flip_vert(tile))
-
-all_tiles_list = []
+tiles_to_edge_list_dict = {}
 
 for id in tiles_dict.keys():
     tile = tiles_dict[id]
-    all_tiles_list.append((identity(tile), id))
-    all_tiles_list.append((rotate90(tile), id))
-    all_tiles_list.append((rotate180(tile), id))
-    all_tiles_list.append((rotate270(tile), id))
-    all_tiles_list.append((flip_vert(tile), id))
-    all_tiles_list.append((flipv_r90(tile), id))
-    all_tiles_list.append((flipv_r180(tile), id))
-    all_tiles_list.append((flipv_r270(tile), id))
+    top = tile[0]
+    bottom = tile[len(tile) - 1]
+    left = column(tile, 0)
+    right = column(tile, len(tile) - 1)
+    edge_list = [top, right, bottom, left]
+    tiles_to_edge_list_dict[id] = edge_list
 
+tiles_to_edge_matching_ids_dict = {}
 
-def num_match_top(tile, tile_id):
-    count = 0
-    keys = list(tiles_dict.keys())
-    remove = [x for x in keys if x != tile_id]
+for id in tiles_to_edge_list_dict:
+    matching_ids_list = [[], [], [], []]
+    edge_list = tiles_to_edge_list_dict[id]
+    top, right, bottom, left = edge_list
 
-    for id in remove:
+    for other_id in tiles_to_edge_list_dict:
 
-        tile_check = tiles_dict[id]
-        rotations = []
-        rotations.append(identity(tile_check))
-        rotations.append(rotate90(tile_check))
-        rotations.append(rotate180(tile_check))
-        rotations.append(rotate270(tile_check))
-        rotations.append(flip_vert(tile_check))
-        rotations.append(flipv_r90(tile_check))
-        rotations.append(flipv_r180(tile_check))
-        rotations.append(flipv_r270(tile_check))
+        if(other_id != id):
+            other_edge_list = tiles_to_edge_list_dict[other_id]
 
-        for t_c in rotations:
+            for other_edge in other_edge_list:
 
-            if(tile[0] == t_c[len(t_c) - 1]):
-                count += 1
+                if(other_edge == top or other_edge[::-1] == top or other_edge == top[::-1] or other_edge[::-1] == top[::-1]):
+                    matching_ids_list[0].append(other_id)
 
-    return count
+                if(other_edge == right or other_edge[::-1] == right or other_edge == right[::-1] or other_edge[::-1] == right[::-1]):
+                    matching_ids_list[1].append(other_id)
 
+                if(other_edge == bottom or other_edge[::-1] == bottom or other_edge == bottom[::-1] or other_edge[::-1] == bottom[::-1]):
+                    matching_ids_list[2].append(other_id)
 
-def num_match_bottom(tile, tile_id):
-    count = 0
-    keys = list(tiles_dict.keys())
-    remove = [x for x in keys if x != tile_id]
+                if(other_edge == left or other_edge[::-1] == left or other_edge == left[::-1] or other_edge[::-1] == left[::-1]):
+                    matching_ids_list[3].append(other_id)
 
-    for id in remove:
+    tiles_to_edge_matching_ids_dict[id] = matching_ids_list
 
-        tile_check = tiles_dict[id]
-        rotations = []
-        rotations.append(identity(tile_check))
-        rotations.append(rotate90(tile_check))
-        rotations.append(rotate180(tile_check))
-        rotations.append(rotate270(tile_check))
-        rotations.append(flip_vert(tile_check))
-        rotations.append(flipv_r90(tile_check))
-        rotations.append(flipv_r180(tile_check))
-        rotations.append(flipv_r270(tile_check))
+corner_ids = []
 
-        for t_c in rotations:
+for id in tiles_to_edge_matching_ids_dict:
+    edge_matching_ids = tiles_to_edge_matching_ids_dict[id]
 
-            if(tile[len(tile) - 1] == t_c[0]):
-                count += 1
+    for i in range(0, len(edge_matching_ids)):
 
-    return count
-
-def num_match_right(tile, tile_id):
-    count = 0
-    keys = list(tiles_dict.keys())
-    remove = [x for x in keys if x != tile_id]
-
-    for id in remove:
-
-        tile_check = tiles_dict[id]
-        rotations = []
-        rotations.append(identity(tile_check))
-        rotations.append(rotate90(tile_check))
-        rotations.append(rotate180(tile_check))
-        rotations.append(rotate270(tile_check))
-        rotations.append(flip_vert(tile_check))
-        rotations.append(flipv_r90(tile_check))
-        rotations.append(flipv_r180(tile_check))
-        rotations.append(flipv_r270(tile_check))
-
-        for t_c in rotations:
-
-            if(column(tile, len(tile[0]) - 1) == column(t_c, 0)):
-                count += 1
-
-    return count
-
-
-def num_match_left(tile, tile_id):
-    count = 0
-    keys = list(tiles_dict.keys())
-    remove = [x for x in keys if x != tile_id]
-
-    for id in remove:
-
-        tile_check = tiles_dict[id]
-        rotations = []
-        rotations.append(identity(tile_check))
-        rotations.append(rotate90(tile_check))
-        rotations.append(rotate180(tile_check))
-        rotations.append(rotate270(tile_check))
-        rotations.append(flip_vert(tile_check))
-        rotations.append(flipv_r90(tile_check))
-        rotations.append(flipv_r180(tile_check))
-        rotations.append(flipv_r270(tile_check))
-
-        for t_c in rotations:
-
-            if(column(tile, 0) == column(t_c, len(t_c[0]) - 1)):
-                count += 1
-
-    return count
-
-corner_ids = set()
-
-for tup in all_tiles_list:
-
-    if(num_match_top(*tup) == 0 and num_match_right(*tup) == 1 and num_match_left(*tup) == 0 and num_match_bottom(*tup) == 1):
-        corner_ids.add(tup[1])
+        if(num_neighbors(id) == 2 and len(edge_matching_ids[i]) == 0 and len(edge_matching_ids[(i + 1) % 4]) == 0):
+            corner_ids.append(id)
+            break
 
 print(math.prod(corner_ids))
