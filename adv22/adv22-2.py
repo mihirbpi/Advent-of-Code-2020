@@ -29,10 +29,10 @@ def game(p1_deck_list, p2_deck_list):
 
     while(not len(p1_deck) == 0 and not len(p2_deck) == 0):
 
-        if([queue_to_list(p1_deck) , queue_to_list(p2_deck)] in past_configs_list):
+        if([queue_to_list(p1_deck), queue_to_list(p2_deck)] in past_configs_list):
             return (0, 1)
 
-        past_configs_list.append([queue_to_list(p1_deck) , queue_to_list(p2_deck)])
+        past_configs_list.append([queue_to_list(p1_deck), queue_to_list(p2_deck)])
         p1_card = p1_deck.popleft()
         p2_card = p2_deck.popleft()
 
