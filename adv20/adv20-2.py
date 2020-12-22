@@ -26,6 +26,7 @@ def column(tile, i):
 
 def inner_tile(tile):
     inner = []
+
     for i in range(1, len(tile) - 1):
         inner.append(tile[i][1:len(tile[i])-1])
     return inner
@@ -52,7 +53,6 @@ def rotate90(tile):
 
 def rotate90_edge_list(edge_list):
     list_copy =  copy.deepcopy(edge_list)
-
     list_copy[1] = edge_list[0]
     list_copy[2] = edge_list[1]
     list_copy[3] = edge_list[2]
@@ -83,7 +83,6 @@ def flip_vert(tile):
 
 def flip_vert_edge_list(edge_list):
     list_copy =  copy.deepcopy(edge_list)
-
     list_copy[1] = edge_list[3]
     list_copy[3] = edge_list[1]
 
@@ -145,7 +144,6 @@ def is_sea_monster(i, j, image):
 
     else:
         return valid_sea_monster(i, j, image)
-
 
 def num_sea_monsters(image):
 
@@ -349,7 +347,7 @@ for i in range(0, 8 * size):
     str = ""
 
     for j in range(0, size):
-        str += inner_tile( tiles_dict[grid[n][j]])[k]
+        str += inner_tile(tiles_dict[grid[n][j]])[k]
 
     image[i] = str
 
