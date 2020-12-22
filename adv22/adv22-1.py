@@ -34,7 +34,6 @@ if(not p1_deck.empty()):
         card = p1_deck.get_nowait()
         winning_cards.append(card)
 
-
 elif(not p2_deck.empty()):
 
     while(not p2_deck.empty()):
