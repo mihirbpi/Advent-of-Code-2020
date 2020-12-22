@@ -35,7 +35,6 @@ def num_neighbors(id):
 
     return count
 
-
 tiles_to_edge_list_dict = {}
 
 for id in tiles_dict.keys():
