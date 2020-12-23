@@ -1,5 +1,4 @@
 from aocd import get_data
-from llist import dllist, dllistnode
 
 cups_list = list(map(int, list(get_data(day=23))))
 cups_list.extend(range(max(cups_list) + 1, 1000000 + 1))
@@ -60,7 +59,6 @@ class LinkedList(object):
             node = node.next
 
         return result
-
 
 cups_linked_list = LinkedList()
 prev = None
