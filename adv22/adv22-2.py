@@ -6,16 +6,6 @@ my_list = get_data(day=22).split("\n\n")
 p1_string = list(map(int, my_list[0].strip("\n").split("\n")[1:]))
 p2_string = list(map(int, my_list[1].strip("\n").split("\n")[1:]))
 
-def queue_to_list(queue):
-    queue_copy = copy.deepcopy(queue)
-    l = []
-
-    while(not len(queue_copy) == 0):
-        card = queue_copy.popleft()
-        l.append(card)
-
-    return l
-
 def game(p1_deck_list, p2_deck_list):
     past_configs_list = []
     p1_deck = deque()
@@ -29,15 +19,15 @@ def game(p1_deck_list, p2_deck_list):
 
     while(not len(p1_deck) == 0 and not len(p2_deck) == 0):
 
-        if([queue_to_list(p1_deck), queue_to_list(p2_deck)] in past_configs_list):
+        if([list(p1_deck), list(p2_deck)] in past_configs_list):
             return (0, 1)
 
-        past_configs_list.append([queue_to_list(p1_deck), queue_to_list(p2_deck)])
+        past_configs_list.append([list(p1_deck), list(p2_deck)])
         p1_card = p1_deck.popleft()
         p2_card = p2_deck.popleft()
 
         if(len(p1_deck) >= p1_card and len(p2_deck) >= p2_card):
-            winner = game(queue_to_list(p1_deck)[:p1_card], queue_to_list(p2_deck)[:p2_card])[1]
+            winner = game(list(p1_deck)[:p1_card], list(p2_deck)[:p2_card])[1]
 
             if(winner == 1):
                 p1_deck.append(p1_card)
@@ -61,7 +51,7 @@ def game(p1_deck_list, p2_deck_list):
 
     if(not len(p1_deck) == 0):
 
-        winning_cards = queue_to_list(p1_deck)
+        winning_cards = list(p1_deck)
         winning_score = 0
 
         for i in range(0,len(winning_cards[::-1])):
@@ -71,7 +61,7 @@ def game(p1_deck_list, p2_deck_list):
 
     elif(not len(p2_deck) == 0):
 
-        winning_cards = queue_to_list(p2_deck)
+        winning_cards = list(p2_deck)
         winning_score = 0
 
         for i in range(0,len(winning_cards[::-1])):
