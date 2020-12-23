@@ -88,11 +88,11 @@ for i in range(0, 10000000):
 
     while (dest_cup in pick_up):
 
-        if(current_cup == 1):
+        if(dest_cup == 1):
             dest_cup = size
 
         else:
-            dest_cup = current_cup - 1
+            dest_cup -= 1
 
     dest_node = cups_linked_list.find(dest_cup)
 
