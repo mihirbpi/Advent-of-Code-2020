@@ -1,8 +1,9 @@
 from aocd import get_data
+from collections import defaultdict
 
 my_list = get_data(day=24).split("\n")
 
-tile_color_dict = {}
+tile_color_dict = defaultdict(lambda: 1)
 
 def instruction_to_tile(instruction):
     current_tile = [0, 0]
