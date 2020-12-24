@@ -14,7 +14,7 @@ for x in range(0, len(my_list)):
             conway_dict.add((x, y, 0, 0))
 
 def update(conway_dict):
-    new_conway_dict = copy.deepcopy(conway_dict)
+    new_conway_dict = set()
     neighbors_dict = defaultdict(lambda: 0)
 
     for coordinates in conway_dict:
@@ -34,8 +34,6 @@ def update(conway_dict):
                         if((dx, dy, dz, dw) != (0, 0, 0, 0)):
                             neighbors_dict[(x + dx, y + dy, z + dz, w + dw)] += 1
 
-    new_conway_dict = set()
-
     for coordinates in neighbors_dict:
 
         if(coordinates in conway_dict and (neighbors_dict[coordinates] == 3 or neighbors_dict[coordinates] == 2)):
@@ -45,7 +43,6 @@ def update(conway_dict):
             new_conway_dict.add(coordinates)
 
     return new_conway_dict
-
 
 for cycle in range(0, 6):
     result = update(conway_dict)
