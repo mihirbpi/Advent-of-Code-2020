@@ -22,7 +22,7 @@ def find_loop_size(public_key):
         if(b == public_key):
             return i + int((20201227 - 1) / 2)
 
-        i = i + 1
+        i += 1
         previous = a
 
 def transform(subject_number, loop_size):
