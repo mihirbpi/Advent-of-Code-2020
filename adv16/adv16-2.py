@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = get_data(day=16).split("\n\n")
+my_list = get_data(year=2020,day=16).split("\n\n")
 fields = my_list[0].split("\n")
 my_ticket = list(map(int, my_list[1].split(":\n")[1].split(",")))
 nearby_tickets = my_list[2].split("\n")

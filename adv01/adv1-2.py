@@ -1,6 +1,6 @@
 from aocd import get_data
 
-list = get_data(day=1).split("\n")
+list = get_data(year=2020,day=1).split("\n")
 
 for i in range (0,len(list)):
     list[i] = int(list[i][0:len(list[i])])

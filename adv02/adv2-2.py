@@ -1,6 +1,6 @@
 from aocd import get_data
 
-list = get_data(day=2).split("\n")
+list = get_data(year=2020,day=2).split("\n")
 valid_strings = 0
 
 for i in range (0, len(list)):

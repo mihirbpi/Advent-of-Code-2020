@@ -1,6 +1,6 @@
 from aocd import get_data
 
-cups_list = list(map(int, list(get_data(day=23))))
+cups_list = list(map(int, list(get_data(year=2020,day=23))))
 size = len(cups_list)
 current_cup = cups_list[0]
 

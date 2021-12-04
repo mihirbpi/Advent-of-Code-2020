@@ -1,7 +1,7 @@
 from aocd import get_data
 import itertools
 
-my_list = get_data(day=19).split("\n\n")
+my_list = get_data(year=2020,day=19).split("\n\n")
 rules = my_list[0].split("\n")
 strings = my_list[1].split("\n")
 rules_dict = {}

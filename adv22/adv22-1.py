@@ -1,7 +1,7 @@
 import asyncio
 from aocd import get_data
 
-my_list = get_data(day=22).split("\n\n")
+my_list = get_data(year=2020,day=22).split("\n\n")
 p1_string = list(map(int, my_list[0].strip("\n").split("\n")[1:]))
 p2_string = list(map(int, my_list[1].strip("\n").split("\n")[1:]))
 

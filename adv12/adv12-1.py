@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = get_data(day=12).split("\n")
+my_list = get_data(year=2020,day=12).split("\n")
 ship_x = 0
 ship_y = 0
 ship_dir_index = 0

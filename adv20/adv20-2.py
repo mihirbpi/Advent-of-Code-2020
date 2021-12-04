@@ -3,7 +3,7 @@ import itertools
 import math
 from aocd import get_data
 
-my_list = get_data(day=20).split("\n\n")
+my_list = get_data(year=2020,day=20).split("\n\n")
 tiles_dict = {}
 
 for i in range(0, len(my_list)):

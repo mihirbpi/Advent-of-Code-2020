@@ -1,6 +1,6 @@
 from aocd import get_data
 
-map = get_data(day=3).split("\n")
+map = get_data(year=2020,day=3).split("\n")
 height = len(map)
 width = len(map[0])
 

@@ -1,7 +1,7 @@
 from aocd import get_data
 import math
 
-my_list = get_data(day=13).split("\n")
+my_list = get_data(year=2020,day=13).split("\n")
 bus_IDs = list(map(int, list(filter(lambda x: x != 'x', my_list[1].split(",")))))
 
 # Chinese Remainder Theorem

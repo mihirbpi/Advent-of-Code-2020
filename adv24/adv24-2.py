@@ -2,7 +2,7 @@ from aocd import get_data
 from collections import defaultdict
 import copy
 
-my_list = get_data(day=24).split("\n")
+my_list = get_data(year=2020,day=24).split("\n")
 
 tile_color_dict = defaultdict(lambda: [1, 0])
 

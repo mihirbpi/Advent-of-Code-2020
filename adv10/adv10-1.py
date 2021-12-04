@@ -1,6 +1,6 @@
 from aocd import get_data
 
-adapter_list = list(map(int, get_data(day=10).split("\n")))
+adapter_list = list(map(int, get_data(year=2020,day=10).split("\n")))
 
 def check_adapters(adapter):
     choices = []

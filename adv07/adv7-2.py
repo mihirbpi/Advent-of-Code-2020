@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = get_data(day=7).split(".\n")[:-1]
+my_list = get_data(year=2020,day=7).split(".\n")[:-1]
 bag_dict = {}
 
 for i in range(0, len(my_list)):

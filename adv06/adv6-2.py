@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = get_data(day=6).split("\n\n")
+my_list = get_data(year=2020,day=6).split("\n\n")
 
 for i in range (0, len(my_list)):
     my_list[i] = my_list[i].split("\n")

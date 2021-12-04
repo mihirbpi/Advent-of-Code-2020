@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = get_data(day=21).split("\n")
+my_list = get_data(year=2020,day=21).split("\n")
 
 allergens_dict = {}
 allergens_toingredient_dict = {}

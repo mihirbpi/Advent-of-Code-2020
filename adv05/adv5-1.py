@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = get_data(day=5).split("\n")
+my_list = get_data(year=2020,day=5).split("\n")
 
 
 def seat_ID(string):

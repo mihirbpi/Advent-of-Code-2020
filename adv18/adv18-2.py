@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = get_data(day=18).split("\n")
+my_list = get_data(year=2020,day=18).split("\n")
 
 def find_closing_index(string, open_index):
     counter = 1

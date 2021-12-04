@@ -1,6 +1,6 @@
 from aocd import get_data
 
-instructions = get_data(day=8).split("\n")[:-1]
+instructions = get_data(year=2020,day=8).split("\n")[:-1]
 acc = 0
 index = 0
 current_instruction = (0, instructions[0])

@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = list(map(int, get_data(day=15).split("\n")[0].split(",")))
+my_list = list(map(int, get_data(year=2020,day=15).split("\n")[0].split(",")))
 dict = {}
 
 for i in range(0, len(my_list)):

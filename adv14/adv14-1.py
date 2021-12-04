@@ -1,6 +1,6 @@
 from aocd import get_data
 
-program = get_data(day=14).split("\n")
+program = get_data(year=2020,day=14).split("\n")
 mask = ""
 mem = {}
 

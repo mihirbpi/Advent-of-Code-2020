@@ -2,7 +2,7 @@ from collections import defaultdict
 import copy
 from aocd import get_data
 
-my_list = get_data(day=17).split("\n")
+my_list = get_data(year=2020,day=17).split("\n")
 conway_dict = set()
 
 for x in range(0, len(my_list)):

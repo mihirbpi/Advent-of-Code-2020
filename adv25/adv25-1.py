@@ -1,7 +1,7 @@
 from aocd import get_data
 import math
 
-my_list = get_data(day=25).split("\n")
+my_list = get_data(year=2020,day=25).split("\n")
 door_public_key = int(my_list[0])
 card_public_key = int(my_list[1])
 

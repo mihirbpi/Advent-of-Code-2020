@@ -1,6 +1,6 @@
 from aocd import get_data
 
-my_list = list(map(int, get_data(day=9).split("\n")[:-1]))
+my_list = list(map(int, get_data(year=2020,day=9).split("\n")[:-1]))
 
 def is_valid(previous_list, number):
 
